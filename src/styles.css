@@ -1,0 +1,25 @@
+.input{
+    width: 70%;
+    margin:0 auto;
+}
+.imei-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.button{
+}
+.button-container{
+    margin: 4px auto;
+    flex-direction: column;
+    justify-content:space-between ;
+}
+.lost-mobile-data{
+    width: auto;
+    background-color:#eee;
+    justify-content: center;
+    align-items: center;
+}
+.lost-mobile-content{
+    margin: 6px auto;    
+}
