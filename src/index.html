@@ -5,26 +5,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobile Theft Detection</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
 </head>
 <body id="screen">
   <div class="imei-container">
-
-    <input placeholder="IMEI Number" class="input"> </input>
     <div class="button-container">
-
-      <button class="button"> ADD </button>
-      <button class="button"> EDIT </button>
-      <button class="button"> DELETE </button>
-      <button class="button">  SEARCH </button>
+      <button onclick="App.addLostMobile()" class="button"> ADD </button>
+      <button class="button" onclick="App.editLostMobile()"> EDIT </button>
+      <button class="button" onclick="App.deleteLostMobile()"> DELETE </button>
+      <button class="button" onclick="App.searchLostMobile()">  SEARCH </button>
     </div>
   </div>
   <div class="lost-mobile-data">
-    <div class="lost-mobile-content"> IMEI : <input disabled></input></div>
-    <div class="lost-mobile-content"> Mobile Number : <input></input></div>
-    <div class="lost-mobile-content"> Location : <input></input></div>
-    <div class="lost-mobile-content"> Status : <input disabled></input></div>
-    <div class="lost-mobile-content"><button>SUBMIT</button></div>
+    <div class="lost-mobile-content"> IMEI : <input  id="#IMEI-disabled"></input></div>
+    <div class="lost-mobile-content"> Mobile Number : <input id="#mobileNumber"></input></div>
+    <div class="lost-mobile-content"> Location : <input id="location"></input></div>
+    <div class="lost-mobile-content"> Status : <input id="status-id"></input></div>
+    <div class="lost-mobile-content"><button onsubmit="App.submitClicked()">SUBMIT</button></div>
   </div>
+  <p id="accountAddress" class="text-center"></p>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="bootstrap.min.js"></script>
+  <script src="web3.min.js"></script>
+  <script src="truffle-contract.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
