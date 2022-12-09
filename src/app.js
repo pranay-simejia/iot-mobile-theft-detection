@@ -1,7 +1,7 @@
 App = {
     loading: false,
     contracts: {},
-    button:'add',
+    button:'search',
     load: async () => {
       await App.loadWeb3()
       await App.loadAccount()
@@ -55,7 +55,7 @@ App = {
       
       // Hydrate the smart contract with values from the blockchain
       App.LostMobileList = await App.contracts.LostMobileList.deployed()
-      console.log(`App.LostMobileList`)
+      console.log(App.LostMobileList)
     },
   
     render: async () => {
@@ -122,11 +122,12 @@ App = {
        $('#location').disabled = true;
     },
     searchLostMobile: async () => {
-       App.button = 'delete'; 
+       App.button = 'search'; 
        $('#mobileNumber').disabled = true;
        $('#location').disabled = true;
     },
     submitClicked: async ()=>{
+      console.log(App.button)
       if(App.button=='add'){
           const IMEI = $('#IMEI').val()
           const mobileNumber = $('#mobileNumber').val()
@@ -150,10 +151,18 @@ App = {
       }
       else if(App.button=='search'){
         const IMEI = $('#IMEI').val()
-        const {lostMobileCount} = App.LostMobileList
-      const {LostMobiles} =  App.LostMobileList
-        console.log(LostMobiles)
+      
+        const lostMobileCount = await App.LostMobileList.lostMobileCount()
+        for (var i = 1; i <= lostMobileCount; i++) {
+      // Fetch the task data from the blockchain
+      const lostMobile = await App.LostMobileList.LostMobiles(i)
+      const lostMobileId = lostMobile[0].toNumber()
+      const IMEI = lostMobile[1]
+      const mobileNumber = lostMobile[2]
+      const location = lostMobile[3]
+      console.log(lostMobileId,IMEI,mobileNumber,location,'hii')
       }
+    }
     },
 
   
