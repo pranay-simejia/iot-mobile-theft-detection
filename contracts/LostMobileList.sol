@@ -55,14 +55,14 @@ contract LostMobileList{
   }  
 
   function addLostMobile(string memory _IMEI,string memory _mobileNumber,string memory _location) public {
-    require(user[msg.sender].weight>=1,'Only Operators can add Lost Mobiles');
+    require(users[msg.sender].weight>=1,'Only Operators can add Lost Mobiles');
     lostMobileCount ++;
     LostMobiles[lostMobileCount] = LostMobile(lostMobileCount,_IMEI,_mobileNumber,_location);
     emit LostMobileAdded(lostMobileCount, _IMEI, _mobileNumber, _location);
   }
 
   function removeLostMobile(string memory _IMEI) public {
-    require(user[msg.sender].weight>=1,'Only Operators and GSM can remove Lost Mobiles');
+    require(users[msg.sender].weight>=1,'Only Operators and GSM can remove Lost Mobiles');
     for(uint i = 1; i<= lostMobileCount; i++){
         if(keccak256(abi.encodePacked(LostMobiles[i].IMEI)) == (keccak256(abi.encodePacked(_IMEI)))) {
             delete LostMobiles[i];
@@ -74,7 +74,7 @@ contract LostMobileList{
   }
 
 function editLostMobile(string memory _IMEI,string memory _mobileNumber,string memory _location) public {
-   require(user[msg.sender].weight>=1,'Only Operators and GSM can remove Lost Mobiles');
+   require(users[msg.sender].weight>=1,'Only Operators and GSM can remove Lost Mobiles');
     for(uint i = 1; i<= lostMobileCount; i++){
         if(keccak256(abi.encodePacked(LostMobiles[i].IMEI)) == (keccak256(abi.encodePacked(_IMEI)))){
             
