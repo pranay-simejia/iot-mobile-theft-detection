@@ -1,7 +1,7 @@
 App = {
     loading: false,
     contracts: {},
-  
+    button:'add',
     load: async () => {
       await App.loadWeb3()
       await App.loadAccount()
@@ -131,8 +131,9 @@ App = {
           const IMEI = $('#IMEI').val()
           const mobileNumber = $('#mobileNumber').val()
           const location = $('#location').val()
+          console.log(IMEI,mobileNumber,location)
           await App.LostMobileList.addLostMobile(IMEI,mobileNumber,location)
-          $('status-id').val() = 'Accepted'
+          $('#status-id').val() = 'Accepted'
           window.location.reload()
       }
         else if(App.button=='edit'){
@@ -140,7 +141,7 @@ App = {
           const mobileNumber = $('#mobileNumber').val()
           const location = $('#location').val()
           await App.LostMobileList.editLostMobile(IMEI,mobileNumber,location)
-          $('status-id').val() = 'Accepted'
+          $('#status-id').val() = 'Accepted'
           window.location.reload()
       }else if(App.button=='delete'){
         const IMEI = $('#IMEI').val()
