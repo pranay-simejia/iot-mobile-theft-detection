@@ -10,6 +10,7 @@
 
 </head>
 <body id="screen">
+  <h1 id="ME"></h1>
   <div class="imei-container">
     <div class="button-container">
       <button onclick="App.addLostMobile()" class="button"> ADD </button>
@@ -31,6 +32,14 @@
     <p id="SearchResult-IMEI" class="text-center"></p>
     <p id="SearchResult-mob" class="text-center"></p>
     <p id="SearchResult-loc" class="text-center"></p>
+  </div>
+  <div class="imei-container" id="operator-container">
+    <div class="lost-mobile-content"> Operator Name: <input  id="opName"></input></div>
+    <div class="lost-mobile-content">Address : <input id="opAdd"></input></div>
+    <div class="button-container">
+      <button onclick="App.opAdd()" class="button"> ADD </button>
+      <button class="button" onclick="App.opDelete()"> DELETE</button>
+    </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->

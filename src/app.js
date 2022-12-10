@@ -76,10 +76,21 @@ App = {
 
 		// Update app loading state
 		App.setLoading(true);
-
+		const gsm = await App.LostMobileList.gsm();
+		
+			// Fetch the task data from the blockchain
+			
+			const operator = await App.LostMobileList.users(App.account);
 		// Render Account
 		$('#accountAddress').html(App.account);
-
+		$('#ME').html(operator[0]);
+		
+		if (gsm === App.account) {
+			$('#operator-container').show();
+			$('#ME').html("GSM ");
+		} else {
+			$('#operator-container').hide();
+		}
 		// Render Tasks
 		// await App.renderTasks()
 
@@ -120,6 +131,18 @@ App = {
 	//   }
 	// },
 
+	opAdd: async () => {
+		const opName = $('#opName').val();
+		const opAdd = $('#opAdd').val();
+		await App.LostMobileList.addOperator(opAdd, opName);
+		window.location.reload();
+	},
+	opDelete: async () => {
+		// const opName = $('#opName').val()
+		const opAdd = $('#opAdd').val();
+		await App.LostMobileList.removeOperator(opAdd);
+		window.location.reload();
+	},
 	addLostMobile: async () => {
 		App.button = 'add';
 		$('#mobileNumber').prop('disabled', false);
@@ -172,12 +195,12 @@ App = {
 				const _IMEI = lostMobile[1];
 				const mobileNumber = lostMobile[2];
 				const location = lostMobile[3];
-        console.log( _IMEI, IMEI)
+				console.log(_IMEI, IMEI);
 				if (_IMEI === IMEI) {
-					$('#SearchResult-id').html( lostMobileId);
-					$('#SearchResult-IMEI').html( _IMEI);
-					$('#SearchResult-mob').html( mobileNumber);
-					$('#SearchResult-loc').html( location);
+					$('#SearchResult-id').html('Lost Mobile ID : ' + lostMobileId);
+					$('#SearchResult-IMEI').html('IMEI Number' + _IMEI);
+					$('#SearchResult-mob').html('Mobile Number' + mobileNumber);
+					$('#SearchResult-loc').html('Location' + location);
 				}
 				// console.log(lostMobileId, _IMEI, mobileNumber, location);
 			}
